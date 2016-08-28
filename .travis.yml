@@ -6,7 +6,7 @@ env:
     - COMPILER=g++-4.9
     # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
     #   via the "travis encrypt" command using the project repo's public key
-    - secure: ""
+    - secure: "DXinuKBGlhTxtSnbUmsE3EiLC0sXrUVCqYYDa9Hdk4hmQoTghxaYqKyHVjR9JEe8DqNvmVMI3x9txYiYHtsfvLgxGIK3g/vO6El02CSCJ6dp/W5ZJgtThtB/phnBj5sAqxkGRMPwUGkoD7cfanCjV7epB7XbVnGz9vBke/BRW0IhM53Stxt4zxI133emH7wCQDIqn/zAhqw9Nrr+2fhiW+GvvRWhMgzPTWtaQ9M62nhzpQHdQItXIaqU+tHBizYJM5Y1QbNgFdgER2wKcbQxhVicf59ItOsr4nIuV0YGzPL/K5y888eJap3+PJuTQ5I6ZEPYcgBYUX6xYOqlcLdyC20HiP6ji/k7u7/iazz8NHjd4W0IZ4yPcmYfk9UQ2Dg2D84nDzwOekNRlTenA7nhuM4E2h/RMF8u1LZ4Cr91zFL3TYjq6ZEZdvGJOYbXQFkw2axirtbdl8K60CeXcT6kRnIetIxUZCq6RbLJzSKqLgTBvfHpdMU1nLaF7O/3P3ObuX+cVXkgIKgFUxif4pO0V2V2WF0bKYh7qm33Urw9YV6omJTftp4lyqXveQ7hrdvgMEG19cXQzbStD7+MGkIg0saIfPp3OFqGcV8QeQih3QudEsYvgAVsQWjUh89544Hp1bf/F5tt1i0jyHXU7aApIhJef4IODGNCm6YofEhY9b0="
 
 addons:
   apt:
