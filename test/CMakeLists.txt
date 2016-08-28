@@ -99,6 +99,7 @@ add_executable(
   SimpleSockMock.cpp
   TestThermostat.cpp
   TestxPLThermostat.cpp
+  TimeMock.cpp
   main.cpp
 )
 
