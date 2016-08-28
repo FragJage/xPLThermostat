@@ -97,9 +97,10 @@ add_executable(
   ../src/xPLThermostat.cpp
   ControlSockMock.cpp
   SimpleSockMock.cpp
+  TimeMock.cpp
+  TestCache.cpp
   TestThermostat.cpp
   TestxPLThermostat.cpp
-  TimeMock.cpp
   main.cpp
 )
 
