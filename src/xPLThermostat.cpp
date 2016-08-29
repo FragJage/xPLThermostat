@@ -92,7 +92,6 @@ void xPLThermostat::ConfigDelete(const std::string& configName)
         {
             m_Cache.RemoveThermostat(&(*it));
             m_Thermostats.erase(it);
-            delete(&(*it));
             return;
         }
     }
