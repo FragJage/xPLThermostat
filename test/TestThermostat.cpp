@@ -7,8 +7,9 @@ TestThermostat::TestThermostat() : TestClass("Thermostat", this)
 	addTest("Constructors", &TestThermostat::Constructors);
 	addTest("GetMethods", &TestThermostat::GetMethods);
 	addTest("Standard Thermostat", &TestThermostat::StdThermostat);
-	addTest("Cooling Thermostat", &TestThermostat::ColdThermostat);
+	addTest("Colding Thermostat", &TestThermostat::ColdThermostat);
 	addTest("Differential Thermostat", &TestThermostat::DiffThermostat);
+	addTest("Colding differential", &TestThermostat::ColdDiffThermostat);
 	addTest("SetMode", &TestThermostat::SetMode);
 }
 
@@ -113,7 +114,44 @@ bool TestThermostat::DiffThermostat()
     assert(true==th.StateChange());
     assert(false==th.GetState());
 
+    th.SetDifferentialValue(31);        //Toujours pas assez de soleil
+    assert(false==th.StateChange());
+    assert(false==th.GetState());
+
     th.SetDifferentialValue(60);        //Le nuage est passé
+    assert(true==th.StateChange());
+    assert(true==th.GetState());
+
+    return true;
+}
+
+bool TestThermostat::ColdDiffThermostat()
+{
+    Thermostat th("CelarTh", "fragxpl-onewire.default:celarfreshing", 18, "fragxpl-onewire.default:celartemp", 0.5, true, "fragxpl-onewire.default:refreshtemp", 3, 6);
+
+    assert(false==th.GetState());
+    th.SetTemperatureValue(25);         //Mise en marche
+    th.SetDifferentialValue(10);
+    assert(true==th.StateChange());
+    assert(true==th.GetState());
+
+    th.SetTemperatureValue(17.4);         //Arret -> température atteinte
+    assert(true==th.StateChange());
+    assert(false==th.GetState());
+
+    th.SetTemperatureValue(19);         //Mise en marche -> température trop haute
+    assert(true==th.StateChange());
+    assert(true==th.GetState());
+
+    th.SetDifferentialValue(17);        //Pas assez de fraicheur
+    assert(true==th.StateChange());
+    assert(false==th.GetState());
+
+    th.SetDifferentialValue(15);        //Toujours pas assez de fraicheur
+    assert(false==th.StateChange());
+    assert(false==th.GetState());
+
+    th.SetDifferentialValue(11);        //Réserve de fraicheur retrouvée
     assert(true==th.StateChange());
     assert(true==th.GetState());
 
@@ -142,6 +180,14 @@ bool TestThermostat::SetMode()
     assert(false==th.GetState());
 
     th.SetMode("ENABLE");
+    assert(true==th.StateChange());
+    assert(true==th.GetState());
+
+    th.SetMode("DISABLE");
+    assert(true==th.StateChange());
+    assert(false==th.GetState());
+
+    th.SetMode("ZZZZZZ");
     assert(true==th.StateChange());
     assert(true==th.GetState());
 

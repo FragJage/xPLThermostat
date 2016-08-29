@@ -15,5 +15,6 @@ public:
     bool StdThermostat();
     bool ColdThermostat();
     bool DiffThermostat();
+    bool ColdDiffThermostat();
     bool SetMode();
 };
