@@ -4,10 +4,19 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    xPLThermostat xPLDev;
+    int res = 0;
 
-	Service* pService = Service::Create("xPLThermostat", "Thermostat for xPL protocol", &xPLDev);
-	int res = pService->Start(argc, argv);
-	Service::Destroy();
-	return res;
+    try
+    {
+        xPLThermostat xPLDev;
+
+        Service* pService = Service::Create("xPLThermostat", "Thermostat for xPL protocol", &xPLDev);
+        res = pService->Start(argc, argv);
+        Service::Destroy();
+    }
+    catch(const exception &e)
+    {
+        std::cout << e.what();
+    }
+    return res;
 }

@@ -9,16 +9,95 @@ Thermostat::Thermostat(const string& name)
     m_Name = name;
     m_Mode = Thermostat::ENABLE;
     m_State = false;
+    m_SetPoint = 0;
+   	m_Hysteresis = 0;
+   	m_Cooling = false;
+   	m_DifferentialEngagementGap = 0;
+   	m_DifferentialDisengagementGap = 0;
+   	m_TemperatureValue = 0;
+   	m_DifferentialValue = 0;
 }
 
 Thermostat::Thermostat(const string& name, const string& output, double setpoint, const string& temperatureDevice, double hysteresis, bool cooling, const string& differentialDevice, double engagementGap, double disengagementGap)
 {
     m_Name = name;
+   	m_TemperatureValue = 0;
+   	m_DifferentialValue = 0;
     SetThermostat(output, setpoint, temperatureDevice, hysteresis, cooling, differentialDevice, engagementGap, disengagementGap);
 }
 
 Thermostat::~Thermostat()
 {
+}
+
+void Thermostat::swap(Thermostat& other)
+{
+    std::swap(m_Name, other.m_Name);
+    std::swap(m_Mode, other.m_Mode);
+    std::swap(m_OutputDevice, other.m_OutputDevice);
+    std::swap(m_DeviceName, other.m_DeviceName);
+    std::swap(m_ModuleName, other.m_ModuleName);
+    std::swap(m_SetPoint, other.m_SetPoint);
+    std::swap(m_Hysteresis, other.m_Hysteresis);
+    std::swap(m_Cooling, other.m_Cooling);
+    std::swap(m_State, other.m_State);
+    std::swap(m_TemperatureDevice, other.m_TemperatureDevice);
+    std::swap(m_DifferentialDevice, other.m_DifferentialDevice);
+    std::swap(m_DifferentialEngagementGap, other.m_DifferentialEngagementGap);
+    std::swap(m_DifferentialDisengagementGap, other.m_DifferentialDisengagementGap);
+    std::swap(m_TemperatureValue, other.m_TemperatureValue);
+    std::swap(m_DifferentialValue, other.m_DifferentialValue);
+}
+
+Thermostat::Thermostat(Thermostat const& other) :
+    m_Name{other.m_Name},
+    m_Mode{other.m_Mode},
+    m_OutputDevice{other.m_OutputDevice},
+    m_DeviceName{other.m_DeviceName},
+    m_ModuleName{other.m_ModuleName},
+    m_SetPoint{other.m_SetPoint},
+    m_Hysteresis{other.m_Hysteresis},
+    m_Cooling{other.m_Cooling},
+    m_State{other.m_State},
+    m_TemperatureDevice{other.m_TemperatureDevice},
+    m_DifferentialDevice{other.m_DifferentialDevice},
+    m_DifferentialEngagementGap{other.m_DifferentialEngagementGap},
+    m_DifferentialDisengagementGap{other.m_DifferentialDisengagementGap},
+    m_TemperatureValue{other.m_TemperatureValue},
+    m_DifferentialValue{other.m_DifferentialValue}
+{
+}
+
+Thermostat& Thermostat::operator=(Thermostat const& other)
+{
+    Thermostat{other}.swap(*this);
+    return *this;
+}
+
+Thermostat::Thermostat(Thermostat &&other)
+{
+    m_Name = move(other.m_Name);
+    m_Mode = other.m_Mode;
+    m_OutputDevice = move(other.m_OutputDevice);
+    m_DeviceName = move(other.m_DeviceName);
+    m_ModuleName = move(other.m_ModuleName);
+    m_SetPoint = other.m_SetPoint;
+    m_Hysteresis = other.m_Hysteresis;
+    m_Cooling = other.m_Cooling;
+    m_State = other.m_State;
+    m_TemperatureDevice = move(other.m_TemperatureDevice);
+    m_DifferentialDevice = move(other.m_DifferentialDevice);
+
+    m_DifferentialEngagementGap = other.m_DifferentialEngagementGap;
+    m_DifferentialDisengagementGap = other.m_DifferentialDisengagementGap;
+    m_TemperatureValue = other.m_TemperatureValue;
+    m_DifferentialValue = other.m_DifferentialValue;
+}
+
+Thermostat& Thermostat::operator=(Thermostat&& other) noexcept
+{
+   Thermostat(move(other)).swap(*this);
+   return *this;
 }
 
 void Thermostat::SetThermostat(const string& output, double setpoint, const string& temperatureDevice, double hysteresis, bool cooling, const string& differentialDevice, double engagementGap, double disengagementGap)

@@ -11,6 +11,12 @@ class Thermostat
         Thermostat(const std::string& name, const std::string& output, double setpoint, const std::string& temperatureDevice, double hysteresis, bool cooling, const std::string& differentialDevice, double engagementGap, double disengagementGap);
         ~Thermostat();
 
+        void swap(Thermostat& other);
+        Thermostat(Thermostat const& other);
+        Thermostat& operator=(Thermostat const& other);
+        Thermostat(Thermostat &&other);
+        Thermostat& operator=(Thermostat&& other) noexcept;
+
         void SetThermostat(const std::string& output, double setpoint, const std::string& temperatureDevice, double hysteresis, bool cooling, const std::string& differentialDevice, double engagementGap, double disengagementGap);
         std::string GetName();
         std::string GetModuleName();
