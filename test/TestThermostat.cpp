@@ -21,6 +21,10 @@ bool TestThermostat::Constructors()
 {
     Thermostat th1("MyFirstTh");
     Thermostat th2("PoolTh", "fragxpl-onewire.default:poolheating", 28.5, "fragxpl-onewire.default:pooltemp", 0.4, false, "", 0, 0);
+    Thermostat th3(th1);
+    Thermostat th4 = th2;
+    Thermostat th5(std::move(th1));
+    Thermostat th6 = std::move(th2);
     return true;
 }
 

@@ -21,6 +21,7 @@ public:
     bool Start();
     bool StdConfig();
     bool SetAdvConfig();
+    bool BadFormat();
     bool ModeAuto();
     bool ModeForceON();
     bool ModeForceOFF();
