@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/FragJage/xPLThermostat.svg?branch=master)](https://travis-ci.org/FragJage/xPLThermostat)
-[![Coverage Status](https://coveralls.io/repos/github/FragJage/xPLThermostat/badge.svg?branch=master&bust=2)](https://coveralls.io/github/FragJage/xPLThermostat?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/FragJage/xPLThermostat/badge.svg?branch=master)](https://coveralls.io/github/FragJage/xPLThermostat?branch=master)
 [![Coverity Scan Build](https://scan.coverity.com/projects/10026/badge.svg)](https://scan.coverity.com/projects/10026)
 xPLThermostat
 ===========
