@@ -25,6 +25,7 @@ bool TestThermostat::Constructors()
     Thermostat th4 = th2;
     Thermostat th5(std::move(th1));
     Thermostat th6 = std::move(th2);
+    th6.swap(th5);
     return true;
 }
 
