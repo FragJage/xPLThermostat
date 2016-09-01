@@ -11,6 +11,7 @@ public:
     TestCache();
     ~TestCache();
 
+    bool Constructors();
     bool AddDevice();
     bool RemoveThermostat();
     bool Clear();
