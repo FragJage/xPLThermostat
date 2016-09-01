@@ -23,6 +23,39 @@ CacheDevice::~CacheDevice()
 {
 }
 
+void CacheDevice::swap(CacheDevice& other)
+{
+    std::swap(m_Lu, other.m_Lu);
+    std::swap(m_Current, other.m_Current);
+    std::swap(m_Thermostats, other.m_Thermostats);
+}
+
+CacheDevice::CacheDevice(CacheDevice const& other) :
+    m_Lu{other.m_Lu},
+    m_Current{other.m_Current},
+    m_Thermostats{other.m_Thermostats}
+{
+}
+
+CacheDevice& CacheDevice::operator=(CacheDevice const& other)
+{
+    CacheDevice{other}.swap(*this);
+    return *this;
+}
+
+CacheDevice::CacheDevice(CacheDevice &&other)
+{
+    m_Thermostats = move(other.m_Thermostats);
+    m_Lu = other.m_Lu;
+    m_Current = other.m_Current;
+}
+
+CacheDevice& CacheDevice::operator=(CacheDevice&& other) noexcept
+{
+   CacheDevice(move(other)).swap(*this);
+   return *this;
+}
+
 void CacheDevice::AddThermostat(Thermostat* thermostat)
 {
     m_Thermostats.push_back(thermostat);

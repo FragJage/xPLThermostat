@@ -7,6 +7,7 @@ TestCache::TestCache() : TestClass("TestCache", this),
                             AirTh("AirTh", "fragxpl-onewire.default:airconditioner", 25, "fragxpl-onewire.default:housetemp", 0.3, true, "", 0, 0),
                             PoolTh("PoolTh", "fragxpl-onewire.default:poolheating", 28, "fragxpl-onewire.default:pooltemp", 0.5, false, "fragxpl-onewire.default:solartemp", 3, 6)
 {
+	addTest("Constructors", &TestCache::Constructors);
 	addTest("AddDevice", &TestCache::AddDevice);
 	addTest("UpdateDevice", &TestCache::UpdateDevice);
 	addTest("GetValue", &TestCache::GetValue);
@@ -16,6 +17,18 @@ TestCache::TestCache() : TestClass("TestCache", this),
 
 TestCache::~TestCache()
 {
+}
+
+bool TestCache::Constructors()
+{
+    CacheDevice cd1;
+    CacheDevice cd2;
+    CacheDevice cd3(cd1);
+    CacheDevice cd4 = cd2;
+    CacheDevice cd5(std::move(cd1));
+    CacheDevice cd6 = std::move(cd2);
+    cd6.swap(cd5);
+    return true;
 }
 
 bool TestCache::AddDevice()
